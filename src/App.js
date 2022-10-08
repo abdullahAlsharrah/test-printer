@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import "./App.css";
 // import print from "./testPrint";
-import printer from "./testPrint";
+// import printer from "./testPrint";
 
 function App() {
   const [count, setCount] = React.useState(0);
