@@ -4,13 +4,14 @@ import path from "path";
 
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+const printerRoutes = require("./router");
 
 import App from "../src/App";
 
 const PORT = 8000;
 
 const app = express();
-
+app.use("/", printerRoutes);
 app.use("^/$", (req, res, next) => {
   fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
     if (err) {
@@ -26,7 +27,7 @@ app.use("^/$", (req, res, next) => {
   });
 });
 
-app.use(express.static(path.resolve(__dirname, '..', 'build')))
+app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 app.listen(PORT, () => {
   console.log(`App launched on ${PORT}`);
