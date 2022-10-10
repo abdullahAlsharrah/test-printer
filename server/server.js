@@ -1,4 +1,7 @@
+import bodyParser from "body-parser";
 import express from "express";
+import cors from "cors";
+
 import fs from "fs";
 import path from "path";
 
@@ -11,6 +14,8 @@ import App from "../src/App";
 const PORT = 8000;
 
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 app.use("/", printerRoutes);
 app.use("^/$", (req, res, next) => {
   fs.readFile(path.resolve("./build/index.html"), "utf-8", (err, data) => {
